@@ -23,8 +23,8 @@ const renderer = createRenderer<Container, Container>({
       case 'texture':
         (el as Sprite).texture = Texture.from(nextValue);
         break;
-
       default:
+        el[key] = nextValue;
         break;
     }
   },
