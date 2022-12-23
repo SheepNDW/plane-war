@@ -9,8 +9,13 @@ describe('Plane', () => {
       y: 0,
       x: 0,
     };
+
+    function createPlane() {
+      return setupPlane({}, [], { ...defaultOptions });
+    }
+
     it('moveDown', () => {
-      const plane = setupPlane({}, { ...defaultOptions });
+      const plane = createPlane();
 
       plane.moveDown();
 
@@ -18,7 +23,7 @@ describe('Plane', () => {
     });
 
     it('moveUp', () => {
-      const plane = setupPlane({}, { ...defaultOptions });
+      const plane = createPlane();
 
       plane.moveUp();
 
@@ -26,7 +31,7 @@ describe('Plane', () => {
     });
 
     it('moveLeft', () => {
-      const plane = setupPlane({}, { ...defaultOptions });
+      const plane = createPlane();
 
       plane.moveLeft();
 
@@ -34,7 +39,7 @@ describe('Plane', () => {
     });
 
     it('moveRight', () => {
-      const plane = setupPlane({}, { ...defaultOptions });
+      const plane = createPlane();
 
       plane.moveRight();
 
@@ -45,7 +50,7 @@ describe('Plane', () => {
   describe('fire', () => {
     it('attack', () => {
       const bullets = [];
-      const plane = setupPlane({}, {}, bullets);
+      const plane = setupPlane({}, bullets);
 
       plane.attack();
 
@@ -57,7 +62,7 @@ describe('Plane', () => {
     it('move all bullets', () => {
       const bullet = new Bullet();
       bullet.y = 0;
-      const plane = setupPlane({}, {}, [bullet]);
+      const plane = setupPlane({}, [bullet]);
 
       plane.run();
 

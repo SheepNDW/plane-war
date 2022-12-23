@@ -17,24 +17,36 @@ const defaultOptions = {
   speed: 10,
 };
 
-export const setupPlane = (plane, options?, bullets: Bullet[] = []): Plane => {
+export const setupPlane = (plane, bullets: Bullet[], options?): Plane => {
   // init
   plane.bullets = bullets;
   Object.assign(plane, defaultOptions, options);
 
+  initAttack(plane, bullets);
+  initRun(plane, bullets);
+  initMove(plane);
+
+  return plane;
+};
+
+function initAttack(plane, bullets) {
   plane.attack = () => {
     const bullet = new Bullet();
     bullet.x = plane.x + 25;
     bullet.y = plane.y;
     bullets.push(bullet);
   };
+}
 
+function initRun(plane, bullets) {
   plane.run = () => {
     bullets.forEach((bullet) => {
       bullet.move();
     });
   };
+}
 
+function initMove(plane) {
   plane.moveDown = function moveDown() {
     plane.y += plane.speed;
   };
@@ -50,6 +62,4 @@ export const setupPlane = (plane, options?, bullets: Bullet[] = []): Plane => {
   plane.moveRight = function moveRight() {
     plane.x += plane.speed;
   };
-
-  return plane;
-};
+}
