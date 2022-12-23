@@ -1,0 +1,11 @@
+<script setup lang="ts">
+import bulletImg from '../assets/bullet.png';
+</script>
+
+<template>
+  <Container>
+    <Sprite :texture="bulletImg"></Sprite>
+  </Container>
+</template>
+
+<style scoped></style>

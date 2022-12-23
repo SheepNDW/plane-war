@@ -1,23 +1,32 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, reactive } from 'vue';
+import { onMounted, onUnmounted, PropType } from 'vue';
 import planeImg from '../assets/plane.png';
-import { setupPlane } from '../game';
+import { Plane } from '../game';
 
-const plane = setupPlane(reactive({}));
+const props = defineProps({
+  plane: {
+    type: Object as PropType<Plane>,
+    required: true,
+  },
+});
 
 const keydownHandler = (e: KeyboardEvent) => {
+  if (e.code === 'Space') {
+    props.plane.attack();
+  }
+
   switch (e.code) {
     case 'ArrowDown':
-      plane.moveDown();
+      props.plane.moveDown();
       break;
     case 'ArrowUp':
-      plane.moveUp();
+      props.plane.moveUp();
       break;
     case 'ArrowLeft':
-      plane.moveLeft();
+      props.plane.moveLeft();
       break;
     case 'ArrowRight':
-      plane.moveRight();
+      props.plane.moveRight();
       break;
     default:
       break;
