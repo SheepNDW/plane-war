@@ -1,3 +1,7 @@
+# Plane War
+
+hands-on project from the bilibili video by cuixiaorui.
+
 ## Tasks
 
 1. 基於 custom renderer api 把視圖渲染到 canvas
