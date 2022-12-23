@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { EnemyPlane, initEnemyPlanes, runEnemyPlanes } from './EnemyPlane';
 
 describe('EnemyPlane', () => {
@@ -12,11 +12,16 @@ describe('EnemyPlane', () => {
     expect(enemy.y).toBe(1);
   });
 
-  it('create enemy', () => {
+  it('creates an enemy every two seconds', () => {
+    vi.useFakeTimers();
     const enemyPlanes = [];
     initEnemyPlanes(enemyPlanes);
 
-    expect(enemyPlanes.length).toBe(1);
+    vi.advanceTimersByTime(4000);
+
+    expect(enemyPlanes.length).toBe(2);
+
+    vi.restoreAllMocks();
   });
 
   it('enemy moving', () => {
