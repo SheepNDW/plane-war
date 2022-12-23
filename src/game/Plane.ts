@@ -34,6 +34,10 @@ function initAttack(plane, bullets) {
     const bullet = new Bullet();
     bullet.x = plane.x + 25;
     bullet.y = plane.y;
+    bullet.onDestroy = () => {
+      const index = bullets.indexOf(bullet);
+      bullets.splice(index, 1);
+    };
     bullets.push(bullet);
   };
 }

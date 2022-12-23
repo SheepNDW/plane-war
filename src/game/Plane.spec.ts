@@ -68,5 +68,15 @@ describe('Plane', () => {
 
       expect(bullet.y).not.toBe(0);
     });
+
+    it('bullet should be removed when touch boundary', () => {
+      const bullets = [];
+      const plane = setupPlane({}, bullets, { x: 0, y: 0 });
+      plane.attack();
+
+      plane.run();
+
+      expect(bullets.length).toBe(0);
+    });
   });
 });
